@@ -12,10 +12,10 @@ def filter_entries(input_path, output_folder):
         log_content = log_file.read()
 
     # Find all WARNING-, ERROR-, CRITICAL- und ALERT-entries in big log files
-    warning_entries = re.findall(r'\[WARNING\].*? - (.+?)(?=\n)', log_content)
-    error_entries = re.findall(r'\[ERROR\].*? - (.+?)(?=\n)', log_content)
-    critical_entries = re.findall(r'\[CRITICAL\].*? - (.+?)(?=\n)', log_content)
-    alert_entries = re.findall(r'\[ALERT\].*? - (.+?)(?=\n)', log_content)
+    warning_entries = re.findall(r'\[WARNING\].*?:\s(.*?)(?=\n)', log_content)
+    error_entries = re.findall(r'\[ERROR\].*?:\s(.*?)(?=\n)', log_content)
+    critical_entries = re.findall(r'\[CRITICAL\].*?:\s(.*?)(?=\n)', log_content)
+    alert_entries = re.findall(r'\[ALERT\].*?:\s(.*?)(?=\n)', log_content)
    
     # Create individual output paths for each log level
     output_warning_path = os.path.join(output_folder, f"warnings_{os.path.basename(input_path)}")
